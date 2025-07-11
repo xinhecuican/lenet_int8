@@ -119,6 +119,27 @@ int main(int argc, char** argv) {
         if (i < 15) fprintf(fp, ",\n");
     }
     fprintf(fp, "\n};\n\n");
+    fprintf(fp, "int8_t w_conv2_rev[6][16][3][3] = {\n");
+    for (j = 0; j < 6; j++) {
+        fprintf(fp, "    {");
+        for (i = 0; i < 16; i++) {
+            fprintf(fp, "{");
+            for (m = 0; m < 3; m++) {
+                fprintf(fp, "{");
+                for (n = 0; n < 3; n++) {
+                    fprintf(fp, "%d", w_conv2[i][j][m][n]);
+                    if (n < 2) fprintf(fp, ", ");
+                }
+                fprintf(fp, "}");
+                if (m < 2) fprintf(fp, ", ");
+            }
+            fprintf(fp, "}");
+            if (i < 15) fprintf(fp, ", ");
+        }
+        fprintf(fp, "}");
+        if (j < 5) fprintf(fp, ",\n");
+    }
+    fprintf(fp, "\n};\n\n");
     fprintf(fp, "int8_t w_fc1[10][576] = {\n");
     for (i = 0; i < 10; i++) {
         fprintf(fp, "    {");
